@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 
 public class TrackerTest {
     @Test
@@ -66,5 +67,18 @@ public class TrackerTest {
         bugWithDesc.setName("Bug with description");
         tracker.replace(id, bugWithDesc);
         assertThat(tracker.findById(id).getName(), is("Bug with description"));
+    }
+
+    @Test
+    public void delete() {
+        Tracker tracker = new Tracker();
+        for (int i = 0; i < 10; i++) {
+            Item bug = new Item();
+            bug.setName("Bug" + i);
+            tracker.add(bug);}
+
+        int id =3;
+        tracker.delete(id);
+        assertThat(tracker.findById(id), is(nullValue()));
     }
 }
