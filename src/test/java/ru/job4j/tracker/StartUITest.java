@@ -41,4 +41,16 @@ public class StartUITest {
 
     }
 
+    @Test
+    public void whenInvalidExit() {
+        Output out = new StubOutput();
+        Input in = new StubInput(new String[]{"3", "0"});
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {new ExitAction()};
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is("Menu:0. Exit program"
+                + "Некорректный пункт меню"
+                + "Menu:0. Exit program"));
+    }
+
 }
