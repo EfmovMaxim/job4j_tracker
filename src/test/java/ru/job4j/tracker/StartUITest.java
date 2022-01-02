@@ -2,6 +2,8 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 
@@ -35,7 +37,7 @@ public class StartUITest {
         Output out = new StubOutput();
         Input in = new StubInput(new String[]{"0"});
         Tracker tracker = new Tracker();
-        UserAction[] actions = {new ExitAction()};
+        List<UserAction> actions = List.of(new ExitAction());
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is("Menu:0. Exit program"));
 
@@ -46,7 +48,7 @@ public class StartUITest {
         Output out = new StubOutput();
         Input in = new StubInput(new String[]{"3", "0"});
         Tracker tracker = new Tracker();
-        UserAction[] actions = {new ExitAction()};
+        List<UserAction> actions = List.of(new ExitAction());
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is("Menu:0. Exit program"
                 + "Некорректный пункт меню"

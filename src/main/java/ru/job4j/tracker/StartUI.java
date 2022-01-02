@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 public class StartUI {
     private final Output out;
 
@@ -7,25 +9,26 @@ public class StartUI {
         this.out = out;
     }
 
-    public void init(Input input, Tracker tracker, UserAction[] actions) {
+    public void init(Input input, Tracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             showMenu(actions);
             int select = input.askInt("Select:");
-            if (select < 0 || select >= actions.length) {
+            if (select < 0 || select >= actions.size()) {
                 out.println("Некорректный пункт меню");
                 continue;
             }
-            UserAction action = actions[select];
+            UserAction action = actions.get(select);
             run = action.execute(input, tracker);
         }
     }
 
-    private void showMenu(UserAction[] actions) {
+    private void showMenu(List<UserAction> actions) {
 
         out.println("Menu:");
-        for (int i = 0; i < actions.length; i++) {
-            out.println(i + ". " + actions[i].name());
+        int i = 0;
+        for (UserAction action : actions) {
+            out.println(i++ + ". " + action.name());
         }
     }
 
@@ -33,8 +36,8 @@ public class StartUI {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
         Tracker tracker = new Tracker();
-        UserAction[] actions = {new CreateAction(output), new ShowAllAction(output), new EditAction(output),
-        new DeleteAction(output), new FindItemByIdAction(output), new FindItemByNameAction(output), new ExitAction()};
+        List<UserAction> actions = List.of(new CreateAction(output), new ShowAllAction(output), new EditAction(output),
+        new DeleteAction(output), new FindItemByIdAction(output), new FindItemByNameAction(output), new ExitAction());
         new StartUI(output).init(input, tracker, actions);
     }
 
