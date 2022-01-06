@@ -1,7 +1,5 @@
 package ru.job4j.tracker;
 
-import java.awt.*;
-
 public class Log4File {
 
     private static Log4File instance = null;

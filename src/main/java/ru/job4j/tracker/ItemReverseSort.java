@@ -1,6 +1,5 @@
 package ru.job4j.tracker;
 
-import java.util.Collections;
 import java.util.Comparator;
 
 public class ItemReverseSort implements Comparator<Item> {
