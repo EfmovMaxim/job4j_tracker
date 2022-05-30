@@ -1,9 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
-import ru.job4j.tracker.Item;
-import ru.job4j.tracker.ItemReverseSort;
-import ru.job4j.tracker.Tracker;
+import ru.job4j.tracker.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,10 +11,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 
-public class TrackerTest {
+public class MemTrackerTest {
+
     @Test
     public void whenTestFindById() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item bug = new Item("Bug");
         Item item = tracker.add(bug);
         Item result = tracker.findById(item.getId());
@@ -25,7 +24,7 @@ public class TrackerTest {
 
     @Test
     public void whenTestFindAll() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item first = new Item("First");
         Item second = new Item("Second");
         tracker.add(first);
@@ -36,7 +35,7 @@ public class TrackerTest {
 
     @Test
     public void whenTestFindByNameCheckArrayLength() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item first = new Item("First");
         Item second = new Item("Second");
         tracker.add(first);
@@ -50,7 +49,7 @@ public class TrackerTest {
 
     @Test
     public void whenTestFindByNameCheckSecondItemName() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item first = new Item("First");
         Item second = new Item("Second");
         tracker.add(first);
@@ -65,7 +64,7 @@ public class TrackerTest {
 
     @Test
     public void whenReplace() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         for (int i = 0; i < 10; i++) {
             Item bug = new Item();
             bug.setName("Bug" + i);
@@ -81,7 +80,7 @@ public class TrackerTest {
 
     @Test
     public void delete() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         for (int i = 0; i < 10; i++) {
             Item bug = new Item();
             bug.setName("Bug" + i);

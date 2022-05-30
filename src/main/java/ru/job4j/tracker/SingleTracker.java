@@ -2,8 +2,8 @@ package ru.job4j.tracker;
 
 import java.util.List;
 
-public final class SingleTracker extends Tracker {
-    private static Tracker tracker = new Tracker();
+public final class SingleTracker extends MemTracker {
+    private static MemTracker tracker = new MemTracker();
     private static SingleTracker instance;
 
     private SingleTracker() {
