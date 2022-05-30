@@ -8,8 +8,8 @@ import java.util.stream.Stream;
 public class CollectToAnyMap {
 
     public static Map<Integer, Integer> collect(Stream<Integer> data) {
-        //return data.collect(Collectors.toMap(i -> i, i -> i * i, (l, r) -> l, LinkedHashMap::new));
+        return data.collect(Collectors.toMap(i -> i, i -> i * i, (l, r) -> l, LinkedHashMap::new));
         //return data.collect(Collector.of( , , ));
-        return new HashMap<>();
+        //return new HashMap<>();
     }
 }
